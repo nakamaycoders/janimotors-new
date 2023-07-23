@@ -1,0 +1,30 @@
+/* *{
+    color: white;
+} */
+.error{
+  border: 2px red solid;
+}
+label {
+    color: white !important;
+    /* font-size: 14px; */
+   
+}
+
+.form-select{
+border-radius: 1px !important;
+}
+
+select {
+  padding-right: 13px;
+  padding: 6px;
+  width: 100%;
+}
+
+textarea {
+  resize: vertical;
+  width: 100%;
+}
+
+.TextField{
+  color:bisque;
+}

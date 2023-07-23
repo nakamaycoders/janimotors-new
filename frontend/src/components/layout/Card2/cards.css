@@ -1,0 +1,195 @@
+.photo3{
+  width: 100%;
+}
+.photo4{
+  width: 50%;
+}
+.container{
+  background-color: #000;
+}
+.sellCar {
+  height: 300px;
+  /* border: 1px solid #000000; */
+  overflow: hidden;
+  position: relative;
+}
+.creditApp{
+    position: relative;
+  overflow: hidden;
+}
+.value{
+    position: relative;
+    overflow: hidden;
+}
+.payCal{
+    position: relative;
+    overflow: hidden;
+}
+.container_foto {
+  background-color: rgba(57, 62, 93, 0.7);
+  padding: 0;
+  overflow: hidden;
+  max-width: 100%;
+}
+.container_foto1{
+  width: 107%;
+  height: 50%;
+  background-color: rgba(57, 62, 93, 0.7);
+  padding: 0;
+  overflow: hidden;
+}
+
+.container_foto article {
+  padding: 20%;
+  position: absolute;
+  bottom: 10%;
+  z-index: 1;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+.container_foto1 article{
+/* padding: 20%; */
+left: 30%;
+  position: absolute;
+  bottom: 3%;
+  z-index: 1;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+.resPayCal{
+  left: 24% !important;
+}
+
+.container_foto h2, .container_foto1 h2 {
+  color: #fff;
+  font-weight: 800;
+  font-size: 25px;
+  /* border-bottom: #fff solid 1px; */
+}
+
+.container_foto h4, .container_foto1 h4{
+  font-weight: 300;
+  color: #fff;
+  font-size: 16px;
+}
+
+.container_foto img, .container_foto1 img {
+  width: 100%;
+  max-width: 100%;
+height: 100%;
+  top: 0;
+  left: 0;
+  /* opacity: 0.4; */
+  -webkit-transition: all 2s ease;
+  -moz-transition: all 2s ease;
+  -o-transition: all 2s ease;
+  -ms-transition: all 2s ease;
+  transition: all 2s ease;
+}
+.btn-go {
+  border-radius: 15px;
+  /* width: 117px; */
+  /* height: 37px; */
+  padding: 5px;
+  background: transparent;
+  color: white;
+  margin-left: -39px;
+  position: absolute;
+  bottom: 30%;
+
+  opacity: 0;
+}
+
+/*hovers*/
+
+.container_foto:hover, .container_foto1:hover {
+  cursor: pointer;
+}
+
+.container_foto:hover img, .container_foto1:hover img {
+  /* opacity: 0.1; */
+  transform: scale(1.1);
+}
+
+.container_foto:hover article{
+  transform: translate(2px, -65px);
+  -webkit-transform: translate(2px, -65px);
+  -moz-transform: translate(2px, -65px);
+  -o-transform: translate(2px, -65px);
+  -ms-transform: translate(2px, -65px);
+}
+.container_foto1:hover article{
+    transform: translate(1px, -30px);
+    -webkit-transform: translate(1px, -30px);
+    -moz-transform: translate(1px, -30px);
+    -o-transform: translate(1px, -30px);
+    -ms-transform: translate(1px, -30px);
+}
+.container_foto:hover .btn-go, .container_foto1:hover .btn-go {
+  /* display: block; */
+  opacity: 1;
+  margin-left: 50px;
+  position: relative;
+  bottom: 30%;
+  /* transition: opacity .35 ease; */
+  transition: all 1s ease;
+}
+@media only screen and (max-width: 800px) {
+    .container_foto1  {
+        width: 98%;
+        height: 167px;
+        font-size: 15px;
+    }
+    .container_foto1 h2 {
+      font-weight: 600;
+      font-size: 20px;
+    }
+    .container_foto1 h4{
+      font-weight: 200;
+      font-size: 13px;
+    }
+    .container_foto1 article{
+      /* padding: 20%; */
+      left: 25%;
+      margin-bottom: 11px;
+    }
+  .container_foto h2 {
+    font-weight: 600;
+    font-size: 20px;
+  }
+  .container_foto1 h4{
+    font-weight: 200;
+    font-size: 13px;
+  }
+  .container_foto article{
+    /* padding: 20%; */
+    left: 1%;
+    /* margin-bottom: px; */
+  }
+  .container_foto:hover article{
+    transform: translate(1px, -30px);
+    -webkit-transform: translate(1px, -30px);
+    -moz-transform: translate(1px, -30px);
+    -o-transform: translate(1px, -30px);
+    -ms-transform: translate(1px, -30px);
+  }
+    .resPayCal{
+      left: 18% !important;
+      margin-left: -10px !important; 
+    }
+  }
+  .part2{
+    height:220px;
+  }
+  .part1-2{
+height: 441px;
+  }
+  .part1{
+    height: 441px;
+  }

@@ -1,0 +1,12 @@
+.col-form-labell{
+    color: white !important;
+}
+
+input.form-control, input.form-control:focus {
+    background: #F0F0FF;
+  }
+   
+  .error {
+    color: red;
+    border: none;
+  }

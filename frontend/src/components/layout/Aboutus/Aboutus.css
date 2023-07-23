@@ -1,0 +1,63 @@
+body{
+  background-color: black;
+}
+
+.btn-pri {
+    font-family: Raleway-SemiBold;
+    font-size: 13px;
+    color: black;
+    background: white;
+    border: 2px solid white;
+    border-radius: 40px;
+    /* font-weight: bold; */
+    padding: 10px;
+    width: 150px;
+    font-size: large;
+    margin-top: 40px;
+  }
+  .imgpng{
+    background: none;
+  }
+  
+  .btn-pri:hover {
+    
+    font-family: Raleway-SemiBold;
+    font-size: 13px;
+    color: white;
+    /* letter-spacing: 1px; */
+    border: 2px solid white;
+    border-radius: 40px;
+    background: transparent;
+    padding: 10px;
+    /* font-weight: bold; */
+    font-size: large;
+  }
+  .backGround{
+    background-image: url('https://www.chicagomotorcars.com/template/images/homepage/bottomBg.jpg');
+    background-repeat: no-repeat;
+    /* border: 2px solid red; */
+    background-size: cover;
+    color: white;
+    padding: 100px;
+  }
+
+  /* @media only screen and (max-width: 800px) {
+    .resAbout {
+        padding: 20px;
+        width: 144%;
+        margin-left: -41px;
+        text-align: justify;
+    }
+    .btn-pri{
+        margin:auto;
+        
+    }
+  } */
+
+  .bannerImg{
+      padding-top: 20px;
+  }
+  .rowww{
+    background: transparent !important;
+    
+  }

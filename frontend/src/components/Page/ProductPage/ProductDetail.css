@@ -1,0 +1,109 @@
+/* body{
+
+    background-color: black;
+
+    color: white;
+
+} */
+
+.nav {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 9px !important;
+    margin-bottom: -5px;
+    list-style: none;
+}
+
+.react-slideshow-container+ul.indicators .each-slideshow-indicator:before {
+
+    position: absolute;
+
+    top: 0;
+
+    left: 0;
+
+    width: 7px;
+
+    height: 7px;
+
+    border-radius: 50%;
+
+    content: '';
+
+    background: red;
+
+    text-align: center;
+
+}
+@media all and (max-width : 320px) {
+    .container-fluid {
+        width: 107% !important; 
+    padding-right: var(--bs-gutter-x,.75rem);
+    padding-left: var(--bs-gutter-x,.75rem);
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 0px !important;
+}
+}    
+
+@media all and (max-width : 320px) {
+    .image {
+        max-width: 97%;
+        height: 100% !important;
+        
+    }
+}    
+/* @media all and (max-width : 320px) {
+    image{
+        margin-left: 3px;
+        
+    }
+}     */
+@media all and (max-width : 375px) {
+    .container-fluid {
+        width: 107% !important; 
+    padding-right: var(--bs-gutter-x,.75rem);
+    padding-left: var(--bs-gutter-x,.75rem);
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 0px !important;
+}
+}    
+
+@media all and (max-width : 375px) {
+    .image {
+        max-width: 97%;
+        height: 100% !important;
+        
+    }
+}    
+ 
+@media all and (max-width : 425px) {
+    .container-fluid {
+        width: 107% !important; 
+    padding-right: var(--bs-gutter-x,.75rem);
+    padding-left: var(--bs-gutter-x,.75rem);
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 0px !important;
+}
+}    
+
+@media all and (max-width : 425px) {
+    .image {
+        max-width: 97%;
+        height: 100% !important;
+        margin-left: 5px !important;
+
+        
+    }
+}    
+@media all and (max-width : 768px) {
+    .image {
+        max-width: 97%;
+        height: 100% !important;
+        margin-left: 7px !important;
+        
+    }
+}    
+

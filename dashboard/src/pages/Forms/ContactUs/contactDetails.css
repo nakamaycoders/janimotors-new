@@ -1,0 +1,54 @@
+.table-resp {
+    border-collapse: collapse;
+    margin-left: 1em;
+  }
+  
+  @media (min-width: 768px) {
+    .table-resp {
+      margin-top: 3em;
+      position: relative; 
+    } 
+      thead {
+        text-align: left;
+        background-color: #333;
+        color: white;
+      }
+      td, th {
+        padding: .25em .5em;
+      
+      }
+    }
+  
+  @media (max-width: 767px) /* xs */ {
+    thead {
+      display: none;
+    }
+    .table-resp {
+      display: block;
+      margin-top: 1em;
+    }
+    td {
+      display: block;
+    }
+    td:first-child {
+      font-weight: 700;
+      margin-top: .75em;
+      margin-bottom: 0;
+    }
+    td:nth-child(2) {
+      margin-top: 0;
+    }
+  }
+  
+  /* Uninteresting stuff below here */
+  
+  html {
+    font: 18px "Iowan Old Style", serif;
+  };
+  /* .MuiDataGrid-cellContent{
+    color: red  !important;
+  } */
+  
+  .header{
+    background-color: black  }
+ 
