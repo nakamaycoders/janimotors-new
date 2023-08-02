@@ -88,7 +88,7 @@ const ProductDetail = (props) => {
             {product.name}
           </h1>
 
-          <span style={{ color: "red",fontSize:"22px" }}>{product.price}</span>
+          <span style={{ color: "red",fontSize:"22px" }}>${product.price}</span>
 
           <table class="table">
             <tbody style={{ color: "white" }}>
