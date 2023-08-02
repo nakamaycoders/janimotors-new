@@ -63,6 +63,7 @@ const ProductDetail = (props) => {
                       height: "476px",
                       width: "1000px",
                       borderRadius: "10px",
+                      objectFit: "cover"
                       // marginLeft:"7px"
                     }}
                     alt="car"
