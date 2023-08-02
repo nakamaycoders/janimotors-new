@@ -94,7 +94,7 @@ const CreateProduct = () => {
     // console.log(year);
     myForm.set("interiorColor", interiorColor);
     // console.log(interiorColor);
-    myForm.set("extexteriorColor", exteriorColor);
+    myForm.set("exteriorColor", exteriorColor);
     // console.log(exteriorColor);
     myForm.set("condition", condition);
     // console.log(condition);

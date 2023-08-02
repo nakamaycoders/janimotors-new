@@ -35,10 +35,10 @@ const AllProducts = ({ history }) => {
   const deleteProductHandler = (id) => {
     const deleteUrl = `https://janimotors-api.onrender.com/api/admin/product`;
     try {
-      axios.delete(`${deleteUrl}/${id}`);
-      dispatch(getAdminProduct());
-    }
-     catch (err) {
+      axios.delete(`${deleteUrl}/${id}`).then(()=>{
+        dispatch(getAdminProduct())
+      })
+    } catch (err) {
       console.log(err)
       alert(err);
     }

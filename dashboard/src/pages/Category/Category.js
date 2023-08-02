@@ -56,7 +56,9 @@ const Category = (props) => {
     form.append("name", categoryName);
     form.append("parentId", parentCategoryId);
     form.append("categoryImage", categoryImage);
-    dispatch(createCategory(form));
+    dispatch(createCategory(form)).then(()=>{
+      dispatch(getCategory());
+    });
     setCategoryName("");
     setParentCategoryId("");
     setShow(false);
