@@ -19,9 +19,40 @@ import {
     DELETE_PRODUCT_FAIL,
     DELETE_PRODUCT_RESET,
     CLEAR_ERRORS,
+    UPLOAD_IMAGES_REQUEST,
+  UPLOAD_IMAGES_SUCCESS,
+  UPLOAD_IMAGES_FAIL,
   } from "../constants/productConstants";
   
-  export const productReducer = (state = { products: [] }, action) => {
+  //cloudinary
+  export const uploadImagesReducer = (state = { images: [] }, action) => {
+    {  console.log(action)}
+    switch (action.type) {
+    
+      case UPLOAD_IMAGES_REQUEST:
+        return {
+          ...state,
+          loading: true,
+        };
+      case UPLOAD_IMAGES_SUCCESS:
+        return {
+          loading: false,
+          images: action.payload,
+        };
+      case UPLOAD_IMAGES_FAIL:
+        return {
+          ...state,
+          loading: false,
+          error: action.payload,
+        };
+      default:
+        return state;
+
+      }
+  };
+
+  
+  export const productReducer = (state = { loading: false, products: [] }, action) => {
       switch (action.type) {
           case ADMIN_PRODUCT_REQUEST:
             return {

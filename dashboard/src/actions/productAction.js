@@ -1,5 +1,5 @@
 import axios from "../helpers/axios";
-
+import Axios from "axios"
 import {
   GET_PRODUCT_BY_SLUG,
   GET_PRODUCT_DETAILS_REQUEST,
@@ -17,9 +17,51 @@ import {
   DELETE_PRODUCT_REQUEST,
   DELETE_PRODUCT_SUCCESS,
   DELETE_PRODUCT_FAIL,
+  UPLOAD_IMAGES_REQUEST,
+  UPLOAD_IMAGES_SUCCESS,
+  UPLOAD_IMAGES_FAIL,
 
   CLEAR_ERRORS,
 } from "../constants/productConstants";
+
+
+// Action to upload images to Cloudinary
+export const uploadImages = (data) => async (dispatch) => {
+  try {
+    dispatch({ type: UPLOAD_IMAGES_REQUEST });
+
+    // const formData = new FormData();
+    // images.forEach((image) => formData.append("images", image));
+
+    const config = {
+      headers: {
+        Authorization: localStorage.getItem("token")
+          ? "Bearer " + localStorage.getItem("token")
+          : null,
+        "Content-Type": "multipart/form-data", // Set the correct Content-Type header
+      },
+    };
+    
+
+    const formData = new FormData();
+      for (let i = 0; i < data.length; i++) {
+        formData.append("images", data[i]);
+      }
+
+    const response = await Axios.post("https://janimotors-api.onrender.com/api/upload/", formData, config);
+    console.error("heelloo this res",response)
+    dispatch({
+      type: UPLOAD_IMAGES_SUCCESS,
+      payload: response.data.images,
+    });
+  } catch (error) {
+    dispatch({
+      type: UPLOAD_IMAGES_FAIL,
+      payload: error.response && error.response.data.message ? error.response.data.message : error.message, 
+    });
+  }
+};
+
 
 /// Get All Products For Admin
 export const getAdminProduct = () => async (dispatch) => {

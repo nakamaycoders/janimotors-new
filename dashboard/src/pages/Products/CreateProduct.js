@@ -19,12 +19,20 @@ import { NEW_PRODUCT_RESET } from "../../constants/productConstants";
 import { useHistory } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
+import { Image } from 'cloudinary-react';
+import axios from "axios";
+import { uploadImages } from "../../actions/productAction";
+import Dropzone from "react-dropzone";
+
+
 
 const CreateProduct = () => {
   const dispatch = useDispatch();
   //   const alert = useAlert();
   // const { addToast } = useToasts();/
   let history = useHistory();
+
+  const[imageError,setimageError]= useState("")
 
   const { loading, error, success } = useSelector((state) => state.newProduct);
 
@@ -47,6 +55,19 @@ const CreateProduct = () => {
   const [productPictures, setProductPictures] = useState([]);
   // const [imagesPreview, setImagesPreview] = useState([]);
   const category = useSelector((state) => state.category);
+  const imgState = useSelector((state) => state?.uploadedImages?.images);
+
+
+
+  const img = [];
+  imgState?.forEach((i) => {
+    img?.push({
+      public_id: i.public_id,
+      url: i.url,
+    });
+  });
+
+
 
   const createCategoryList = (categories, options = []) => {
     for (let category of categories) {
@@ -69,86 +90,86 @@ const CreateProduct = () => {
     }
   }, [dispatch, error, history, success,]);
 
-  const createProductSubmitHandler = (e) => {
+  const createProductSubmitHandler = async (e) => {
     e.preventDefault();
 
-    const myForm = new FormData();
+    const formData  = new FormData();
 
-    myForm.set("name", name);
+    formData.set("name", name);
     // console.log(name);
-    myForm.set("stock", stock);
+    formData.set("stock", stock);
     // console.log(stock);
-    myForm.set("price", price);
+    formData.set("price", price);
     // console.log(price);
-    myForm.set("engine", engine);
+    formData.set("engine", engine);
     // console.log(engine);
-    myForm.set("trim", trim);
+    formData.set("trim", trim);
     // console.log(trim);
-    myForm.set("model", model);
+    formData.set("model", model);
     // console.log(model);
-    myForm.set("milage", milage);
+    formData.set("milage", milage);
     // console.log(milage);
-    myForm.set("make", make);
+    formData.set("make", make);
     // console.log(make);
-    myForm.set("year", year);
+    formData.set("year", year);
     // console.log(year);
-    myForm.set("interiorColor", interiorColor);
+    formData.set("interiorColor", interiorColor);
     // console.log(interiorColor);
-    myForm.set("exteriorColor", exteriorColor);
+    formData.set("exteriorColor", exteriorColor);
     // console.log(exteriorColor);
-    myForm.set("condition", condition);
+    formData.set("condition", condition);
     // console.log(condition);
-    myForm.set("vin", vin);
+    formData.set("vin", vin);
     // console.log(vin);
-    myForm.set("description", description);
+    formData.set("description", description);
     // console.log(description);
-    myForm.set("category", categoryId);
+    formData.set("category", categoryId);
     // console.log(categoryId);
-    Array.from(productPictures).forEach((item) => {
-      myForm.append("productPictures", item);
-    });
-    dispatch(createProduct(myForm));
+
+    
+
+    const imageObjects = imgState?.map((img) => ({
+      public_id: img?.public_id,
+      url: img?.url,
+    }));
+    
+  console.log(imageObjects,"here is imageObjects")
+
+
+      const productData = {
+        name,
+        price,
+        stock,
+        engine,
+        trim,
+        model,
+        milage,
+        make,
+        year,
+        interiorColor,
+        exteriorColor,
+        condition,
+        vin,
+        description,
+
+        images: imageObjects,
+      };
+    dispatch(createProduct(productData));
     // console.log(createProduct(myForm));
+   
   };
+
+
+
+  
+  
+  
 
   // const createProductImagesChange = (e) => {
-  const createProductImagesChange = (e) => {
-  //   setProductPictures([...productPictures, e.target.files[0]]);
-  // };
-  // const files = Array.from(e.target.files);
-  // setProductPictures([]);
-  // setImagesPreview([]);
-
-  // files.forEach((file) => {
-  //   const reader = new FileReader();
-
-  //   reader.onload = () => {
-  //     if (reader.readyState === 2) {
-  //       setImagesPreview((old) => [...old, reader.result]);
-  //       setProductPictures((old)=>[...old,reader.result]);
-  //     }
-  //   };
-  //   reader.readAsDataURL(file);
-  // });
-
-  // setProductPictures([]);
-  // setImages([]);
-  // setImagesPreview([]);
-
-  // files.forEach((file) => {
-  //   const reader = new FileReader();
-
-  //   reader.onload = () => {
-  //     if (reader.readyState === 2) {
-  //       setImagesPreview((old) => [...old, reader.result]);
-  //       // setProductPictures((old) => [...old, reader.result]);
-  //       setImages((old) => [...old, reader.result]);
-  //     }
-  //   };
-
-  //   reader.readAsDataURL(file);
-  // });
-  };
+    const createProductImagesChange = (e) => {
+      setProductPictures(e.target.files);
+    };
+    
 
   return (
     <>
@@ -500,16 +521,31 @@ const CreateProduct = () => {
               ))}
             </div> */}
              <div id="createProductFormFile">
-                  <input
-                    type="file"
-                    // name="images"
-                    // accept="image/*"
-                    accept=".jpeg, .png, .jpg"
-                    onChange={(e) => setProductPictures(e.target.files)}
-                    multiple
-                  />
+             <Dropzone
+                onDrop={(acceptedFiles, rejectedFile) =>
+                  dispatch(uploadImages(acceptedFiles))
+                }
+                // onDrop={handleDrop}
+              >
+                {({ getRootProps, getInputProps }) => (
+                  <section>
+                    <div {...getRootProps()}>
+                      <input {...getInputProps()} />
+                      <p>
+                        Drag 'n' drop some files here, or click to select files
+                      </p>
+                    </div>
+                  </section>
+                )}
+              </Dropzone>
+              {imageError && (
+                <div className="text-sm ml-3 text-red-600 mt-1">
+                  {imageError}
                 </div>
-                <div id="createProductFormImage">
+              )}
+                </div>
+
+                {/* <div id="createProductFormImage">
                   {Array.from(productPictures).map((item) => {
                     return (
                       <img
@@ -518,7 +554,20 @@ const CreateProduct = () => {
                       />
                     );
                   })}
-                </div>
+                </div> */}
+
+<div id="createProductFormImage">
+  {Array.from(productPictures).map((item, index) => (
+    <Image
+      key={index}
+      cloudName="jani-motors"
+      publicId={item.name} // Assuming 'item.name' contains the Cloudinary publicId
+      // width="300"
+      crop="scale"
+    />
+  ))}
+</div>
+
 
               <Button
                 id="createProductBtn"
