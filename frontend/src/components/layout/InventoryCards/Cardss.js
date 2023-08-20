@@ -56,7 +56,7 @@ export const Cardss = (props) => {
           return (
             <div key={index} className="card container">
               <img
-                src={ImageUrl(p.productPictures[0].img)}
+                src={p.images[0]?.url}
                 alt="JANI MOTORS CARS"
                 className="img-fluid"
               />
@@ -82,7 +82,7 @@ export const Cardss = (props) => {
                 </h5>
                 <button className="bte btn show-btn btn-primary">Details</button>
                 <button className="btn hide btn-success">
-                  <Link to={`/product/${p._id}`} className="text-decoration-none">View Details</Link>
+                  <Link to={`/product/${p?._id}`} className="text-decoration-none">View Details</Link>
                 </button>
               </div>
             </div>

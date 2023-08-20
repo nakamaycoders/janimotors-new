@@ -41,7 +41,7 @@ export default function ProductDetail(props) {
         <div className="flexRow">
           <div className="productDescContainer">
             <div className="productDescImgContainer">
-              <img src={ImageUrl(product.productDetails.productPictures[0].img)} alt='picture' />
+              <img src={ImageUrl(product.productDetails.images[0].url)} alt='picture' />
             </div>
      
 
@@ -52,7 +52,7 @@ export default function ProductDetail(props) {
             {
                 product.productDetails.productPictures.map((thumb, index) => 
               <div className="thumbnail">
-                <img className='img-fluid' src={ImageUrl(thumb.img)} alt={thumb.img} />
+                <img className='img-fluid' src={ImageUrl(thumb.url)} alt={thumb.url} />
               </div>
               )
             }

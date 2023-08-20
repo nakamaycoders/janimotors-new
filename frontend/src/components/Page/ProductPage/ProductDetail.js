@@ -54,11 +54,11 @@ const ProductDetail = (props) => {
         <>
         <div className="col-md-6 col-sm-12 pt-3">
           <Fade {...properties}>
-            {product.productPictures && product.productPictures.map((product, index) => {
+            {product?.images?.map((product, index) => {
               return (
                 <div key={index}>
                   <img
-                    src={ImageUrl(product.img)}
+                    src={product?.url}
                     style={{
                       height: "476px",
                       width: "1000px",

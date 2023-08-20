@@ -9,6 +9,8 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import MetaData from "../../components/layouts/MetaData";
+import CircularProgress from "@mui/material/CircularProgress";
+import { Box } from "@mui/material";
 // import AccountTreeIcon from "@mui/icons-material/AccountTree";
 // import DescriptionIcon from "@mui/icons-material/Description";
 // import StorageIcon from "@mui/icons-material/Storage";
@@ -32,9 +34,9 @@ const CreateProduct = () => {
   // const { addToast } = useToasts();/
   let history = useHistory();
 
-  const[imageError,setimageError]= useState("")
+  const[imageError,setImageError]= useState("")
 
-  const { loading, error, success } = useSelector((state) => state.newProduct);
+  const { error, success } = useSelector((state) => state.newProduct);
 
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
@@ -51,14 +53,13 @@ const CreateProduct = () => {
   const [exteriorColor, setExteriorColor] = useState("");
   const [description, setDescription] = useState("");
   const [categoryId, setCategoryId] = useState("");
+  console.log("categoryId--->",categoryId)
   // const [productPictures, setProductPictures] = useState([]);
   const [productPictures, setProductPictures] = useState([]);
   // const [imagesPreview, setImagesPreview] = useState([]);
   const category = useSelector((state) => state.category);
   const imgState = useSelector((state) => state?.uploadedImages?.images);
-
-
-
+  const { loading } = useSelector((state) => state?.uploadedImages);
   const img = [];
   imgState?.forEach((i) => {
     img?.push({
@@ -66,7 +67,6 @@ const CreateProduct = () => {
       url: i.url,
     });
   });
-
 
 
   const createCategoryList = (categories, options = []) => {
@@ -92,7 +92,9 @@ const CreateProduct = () => {
 
   const createProductSubmitHandler = async (e) => {
     e.preventDefault();
-
+    if (img.length === 0) {
+      setImageError("Please upload at least one image!");
+    }
     const formData  = new FormData();
 
     formData.set("name", name);
@@ -124,17 +126,14 @@ const CreateProduct = () => {
     formData.set("description", description);
     // console.log(description);
     formData.set("category", categoryId);
-    // console.log(categoryId);
+    console.log(categoryId);
 
     
-
     const imageObjects = imgState?.map((img) => ({
       public_id: img?.public_id,
       url: img?.url,
     }));
-    
-  console.log(imageObjects,"here is imageObjects")
-
+    console.log("here is imageObjects",imageObjects)
 
       const productData = {
         name,
@@ -151,12 +150,14 @@ const CreateProduct = () => {
         condition,
         vin,
         description,
-
+        category: categoryId,
         images: imageObjects,
       };
-    dispatch(createProduct(productData));
+
+    dispatch(createProduct(productData)).then(()=>{
+      setImageError("");
+    });
     // console.log(createProduct(myForm));
-   
   };
 
 
@@ -490,36 +491,8 @@ const CreateProduct = () => {
                   value={engine}
                   onChange={(e) => setEngine(e.target.value)}
                 />
-                {/* <input
-                type="text"
-                placeholder="Engine"
-                required
-                value={engine}
-                onChange={(e) => setEngine(e.target.value)}
-              /> */}
               </div>
-              
              
-
-              {/* {productPictures.length > 0
-                ? productPictures.map((pic, item) => (
-                    <div key={item}>{pic.name}</div>
-                  ))
-                : null} */}
-
-              {/* <div id="createProductFormFile">
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={createProductImagesChange}
-                  multiple
-                />
-              </div>
-              <div id="createProductFormImage">
-              {imagesPreview.map((image, index) => (
-                <img key={index} src={image} alt="Product Preview" />
-              ))}
-            </div> */}
              <div id="createProductFormFile">
              <Dropzone
                 onDrop={(acceptedFiles, rejectedFile) =>
@@ -544,19 +517,45 @@ const CreateProduct = () => {
                 </div>
               )}
                 </div>
-
-                {/* <div id="createProductFormImage">
-                  {Array.from(productPictures).map((item) => {
-                    return (
+                {loading ? (
+              <>
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    my: 3,
+                  }}
+                >
+                  <CircularProgress />
+                </Box>
+              </>
+            ) : (
+              <div className="mt-4 flex flex-wrap gap-3">
+                {imgState?.map((i, j) => {
+                  return (
+                    <div className="relative" key={j}>
+                      {/* <button
+                        type="button"
+                        onClick={() => dispatch(delImg(i.public_id))}
+                        className="btn-close absolute top-2 right-2"
+                      ></button> */}
                       <img
-                        src={item ? URL.createObjectURL(item) : null}
-                        alt="Car Preview"
+                        src={i.url}
+                        alt="img"
+                        style={{
+                          width: "100px",
+                          objectFit: "contain",
+                          height: "100px",
+                        }}
                       />
-                    );
-                  })}
-                </div> */}
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+                
 
-<div id="createProductFormImage">
+{/* <div id="createProductFormImage">
   {Array.from(productPictures).map((item, index) => (
     <Image
       key={index}
@@ -566,7 +565,7 @@ const CreateProduct = () => {
       crop="scale"
     />
   ))}
-</div>
+</div> */}
 
 
               <Button

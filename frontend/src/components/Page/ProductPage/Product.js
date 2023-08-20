@@ -64,11 +64,11 @@ function Product(props) {
                   return (
                     <div className="row">
                       <div className="col-md-6 col-sm-12 pt-3">
-                        <Link to={`/product/${p._id}`}>
+                        <Link to={`/product/${p?._id}`}>
                           <img
                             className="img-fluid"
-                            src={ImageUrl(p.productPictures[0].img)}
-                            alt=""
+                            src={p?.images[0]?.url}
+                            alt="Jani motors"
                           ></img>
                         </Link>
                       </div>
@@ -100,7 +100,7 @@ function Product(props) {
 
                         <Button variant="contained">
                           <Link
-                            to={`/product/${p._id}`}
+                            to={`/product/${p?._id}`}
                             style={{ textDecoration: "none", color: "white" }}
                           >
                             Details

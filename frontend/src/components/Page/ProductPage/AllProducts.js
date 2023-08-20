@@ -51,10 +51,10 @@ const AllProducts = ({ match }) => {
                     // return (
                     <div className="row">
                       <div className="col-md-6 col-sm-12 pt-3">
-                        <Link to={`/product/${p._id}`}>
+                        <Link to={`/product/${p?._id}`}>
                           <img
                             className="img-fluid"
-                            src={ImageUrl(p.productPictures[0].img)}
+                            src={ImageUrl(p.images[0].url)}
                             alt="JANI MOTORS CARS "
                           ></img>
                         </Link>
@@ -87,7 +87,7 @@ const AllProducts = ({ match }) => {
 
                         <Button variant="contained">
                           <Link
-                            to={`/product/${p._id}`}
+                            to={`/product/${p?._id}`}
                             style={{ textDecoration: "none", color: "white" }}
                           >
                             Details

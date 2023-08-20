@@ -25,7 +25,7 @@ import {
   } from "../constants/productConstants";
   
   //cloudinary
-  export const uploadImagesReducer = (state = { images: [] }, action) => {
+  export const uploadImagesReducer = (state = { loading: false, images: [] }, action) => {
     {  console.log(action)}
     switch (action.type) {
     

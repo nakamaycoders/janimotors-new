@@ -87,12 +87,19 @@ export const createProduct = (productData) => async (dispatch) => {
   try {
     dispatch({ type: NEW_PRODUCT_REQUEST });
 
+    // const config = {
+    //   headers: { "Content-Type": "multipart/form-data" },
+    // };
     const config = {
-      headers: { "Content-Type": "multipart/form-data" },
+      headers: {
+      //   Authorization: localStorage.getItem("token")
+      //     ? "Bearer " + localStorage.getItem("token")
+      //     : null,
+        "Content-Type": "application/json", // Set the correct Content-Type header
+      }
     };
-
-    const { data } = await axios.post(
-      `/admin/product/new`,
+    const { data } = await Axios.post(
+      `https://janimotors-api.onrender.com/api/admin/product/new`,
       productData,
       config
     );
